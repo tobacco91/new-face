@@ -2,7 +2,9 @@ var choose = $('.choose');
 var page = $('.page');
 var list = $('.list');
 var choose_two = $('.choose_two');
-var show = false;
+var zan = $('.zan');
+var more = $('.more');
+var stuId = '2014214054';
 var before = '';
 var pageLate = 1;
 var type = 'comp';
@@ -71,14 +73,59 @@ page.addEventListener('touchend',function(e) {
         }
     })
 })
-
-
-
+//toupiao
+list.addEventListener('touchend',function(e) {
+    var target;
+    if(e.target.className == 'zan') {
+        target = e.target;
+        // if(target.alt == 0) {
+        //     target.src = '../imgs/zan1.png';
+        //     target.alt = 1;
+        // } else if (target.alt == 1) {
+        //     target.src = '../imgs/zan0.png';
+        //     target.alt = 0;
+        // }
+                            
+        ajax({
+            method: 'get',
+            url: '/stuface_rebuild/public/index.php/index/index/vote/stuId/'+ stuId +'/voteId/' +target.name,
+            success: function(res) {
+                if(res.status === 200) {
+                    if(target.alt == 0) {
+                        target.src = '../imgs/zan1.png';
+                        target.alt = 1;
+                    } else if (target.alt == 1) {
+                        target.src = '../imgs/zan0.png';
+                        target.alt = 0;
+                    }
+                    var num = parseInt($('.zan-num').innerHTML);
+                    $('.zan-num').innerHTML = num + 1;
+                } else {
+                    alert(res.info);
+                }
+            }
+        }) 
+    } else if(e.target.className == 'more') {
+        target = e.target;
+    } else {
+        return;
+    }
+})
+//投票
+// zan.addEventListener('touchend',function() {
+//     console.log(this.name,1)
+//     ajax({
+//         method: 'get',
+//         url: '/stuface_rebuild/public/index.php/index/index/getStatus/stuId/'+ stuId +'/voteId/' +this.name,
+//         success: function(res) {
+//             console.log(res)
+//         }
+//     })
+// })
 function show_pic(res) {
     list.innerHTML = '';
     for(var i = 0; i < res.data.length; i++) {
-        //console.log(res.data[i].vote)
-        var li = '<li class="show"><span class="rank">NO'+ res.data[i].vote +'</span> <img class="person" src="'+res.data[i].big_pic+'" alt=""><p class="other"><img class="zan" src="../imgs/zan0.png" alt=""> <span class="zan-num">20</span><img class="more" src="../imgs/more.png" alt=""></p></li>';
+        var li = '<li class="show"><span class="rank">NO'+ res.data[i].id +'</span> <img class="person" src="'+res.data[i].pic+'" alt=""><p class="other"><img class="zan" name="'+ res.data[i].uid  +'" src="../imgs/zan0.png" alt="0"> <span class="zan-num">'+ res.data[i].vote +'</span><img class="more" src="../imgs/more.png" alt=""></p></li>';
         list.innerHTML += li;
     }
 }
