@@ -16,7 +16,55 @@ ul,li {
     list-style: none;
 }
 .container {
+    box-sizing: border-box;
     padding-bottom: 38 /75rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    .show_more {
+        //display: none;
+        position: absolute;
+        width: 606 /75rem;
+        height: 785 /75rem;
+        z-index: 15;
+        background-color: #ffffff;
+        top: 300 /75rem;
+        left: 60 /75rem;
+        padding: 12 /75rem;
+        .big_person {
+            width: 606 /75rem;
+            height: 724 /75rem;
+            background-size: 100% 100%;
+        }
+        p {
+            width: 606 /75rem;
+            height: 51 / 75rem;
+            .all {
+                color: #888888;
+                font-size: 24 /75rem;
+                float: left;
+                line-height: 51 /75rem;
+                .number {
+                    margin-left: 17 /75rem;
+                    color: #821515;
+                }
+            }
+            .zan_big {
+                width: 33 /75rem;
+                height: 27 /75rem;
+                float: right;
+                margin-top: 10 /75rem;
+                margin-right: 23 /75rem;
+            }
+            .zan_num_big {
+                font-size: 24 /75rem;
+                line-height: 51 /75rem;
+                float: right;
+            }
+        }
+    }
     .cover {
         display: none;
         position: absolute;
@@ -27,12 +75,15 @@ ul,li {
         background: rgba(0,0,0,.7);
         z-index: 10;
         .success {
+            display: none;
             margin: 500 /75rem auto 0;
             background-color: #fffcf0;
             //opacity: 1;
             border-radius: 5 /75rem;
             width: 400 /75rem;
-            height: 180 /75rem;
+            min-height: 180 /75rem;
+            max-height: 450 /75rem;
+            padding-bottom: 30 /75rem;
             .close {
                 float: right;
                 margin: 10 /75rem 10/75rem 0 0;
@@ -47,19 +98,43 @@ ul,li {
                 display: inline-block;
                 margin: 30 /75rem 30 /75rem 0;
                 height: 30 /75rem;
+                font-size: 30 /75rem;
                 text-align: center;
                 color: #666666;
                 span {
                     color: #f87691;
                 }
             }
+            .second {
+                display: none;
+                width: 219 /75rem;
+                height: 81 /75rem;
+                margin: 40 /75rem auto 0;
+                display: none;
+            }
         }  
     } 
+    .con {
+        overflow: scroll;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+    }
     .top {
         margin: 0 auto;
         width: 665 /75rem;
         height: 540 /75rem;
         position: relative;
+        .message {
+            position: absolute;
+            width: 53 /75rem;
+            height: 53 /75rem;
+            top: 20 /75rem;
+            right: 0;
+        }
         .background {
             width: 666 /75rem;
             height: 495 /75rem;
@@ -162,17 +237,23 @@ ul,li {
                 margin: 25 /75rem auto;
                 //border: 1 /75rem solid #821515;
                 position: relative;
+                .first {
+                    //border-radius: 5 /75rem 5/75rem 0 0;
+                    border-top: 1 /75rem solid #dfa993;
+                }
                 li {
-                    background-color: #fdf8e7;
+                    background-color: #ffffff;
                     font-size: 24 /75rem;
                     width: 580 /75rem;
                     height: 64 /75rem;
                     padding: 0 20 /75rem;
-                    border: 1 /75rem solid #821515;
+                    border: 1 /75rem solid #dfa993;
+                    border-top: 0;
                     span {
                         color: #666666;
                         float: left;
                         line-height: 64 /75rem;
+                        font-size: 28 /75rem;
                     }
                     i {
                         float: right;
@@ -183,9 +264,11 @@ ul,li {
                     display: none;
                     z-index: 10;
                     position: absolute;
-                    width: 620 /75rem;
+                    width: 622 /75rem;
+
                 }
             }
+
             .list {
                 overflow: hidden;
                 text-align: left;
@@ -215,6 +298,7 @@ ul,li {
                         width: 297 /75rem;
                         height: 271 /75rem;
                         vertical-align:top;
+                        background-size: 100% 100%;
                     }
                     .other {
                         width: 251 /75rem;
@@ -237,8 +321,10 @@ ul,li {
                         }
                         .more {
                             position: absolute;
+                            width: 35 /75rem;
+                            height: 35 /75rem;
                             right: 22 /75rem;
-                            top: 29 /75rem;
+                            top: 14.5 /75rem;
                         }
                     }
                 }

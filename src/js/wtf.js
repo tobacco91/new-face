@@ -12,19 +12,24 @@ function ajax(conf) {
     var success = conf.success;
     var data = conf.data;
     var xhr = new XMLHttpRequest();
-
+    var info = conf.info;
     xhr.open(method, url, true);
-
     if (method == 'GET' || method == 'get') {
         xhr.send(null);
     } else if (method == 'POST' || method == 'post') {
-        xhr.setRequestHeader('content-type', 'application/json');
-        xhr.send(JSON.stringify(data));
-    }
+        if(info == 'form') {
+            //xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+            xhr.send(data);
+        } else {
+            xhr.setRequestHeader('content-type', 'application/json');
+            xhr.send(JSON.stringify(data));
+        }
 
+    }
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             success(JSON.parse(xhr.responseText));
+        
         }
     };
     
